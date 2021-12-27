@@ -40,6 +40,7 @@ namespace ZivotinjskaFarma
 
         #region Metode
 
+
         public void RadSaZivotinjama(string opcija, Zivotinja zivotinja, int maxStarost)
         {
             if (zivotinje.Count > 0)
@@ -54,7 +55,7 @@ namespace ZivotinjskaFarma
                     {
                         if (maxStarost * 365 > z2.Starost.Year)
                             postojeca = z2;
-                    }    
+                    }
                 }
 
                 if (opcija == "Dodavanje")
@@ -81,10 +82,35 @@ namespace ZivotinjskaFarma
 
                 else if (postojeca == null)
                     throw new ArgumentException("Životinja nije registrovana u bazi!");
-                
+
                 else
                     throw new ArgumentException("Životinja je već registrovana u bazi!");
 
+            }
+
+            else
+                return;
+        }
+       
+        public void RadSaZivotinjamaRefaktor(IDoAction action, Zivotinja zivotinja, int maxStarost)
+        {
+            if (zivotinje.Count > 0)
+            {
+                Zivotinja postojeca = null;
+                foreach (Zivotinja z in zivotinje)
+                {
+                    Zivotinja z2 = null;
+                    if (z.ID1 == zivotinja.ID1)
+                        z2 = z;
+                    if (z2 != null)
+                    {
+                        if (maxStarost * 365 > z2.Starost.Year)
+                            postojeca = z2;
+                    }
+                }
+
+                action.doAction(zivotinje, zivotinja, postojeca);
+                    
             }
 
             else
@@ -171,5 +197,53 @@ namespace ZivotinjskaFarma
         }
 
         #endregion
+    }
+    public interface IDoAction {
+        public void doAction(List<Zivotinja> zivotinje, Zivotinja zivotinja, Zivotinja postojeca);
+     }
+    class Dodavanje : IDoAction
+    {
+        public void doAction(List<Zivotinja> zivotinje, Zivotinja zivotinja, Zivotinja postojeca)
+        {
+            if (postojeca == null)
+                zivotinje.Add(zivotinja);
+            else
+                throw new ArgumentException("Životinja je već registrovana u bazi!");
+        }
+    }
+    class Izmjena : IDoAction
+    {
+        public void doAction(List<Zivotinja> zivotinje, Zivotinja zivotinja, Zivotinja postojeca)
+        {
+            if (postojeca != null)
+            {
+                var index = zivotinje.IndexOf(postojeca);
+                zivotinje.RemoveAt(index);
+                zivotinje.Add(zivotinja);
+            }
+            else
+                throw new ArgumentException("Životinja nije registrovana u bazi!");
+        }
+    }
+    class Brisanje : IDoAction
+    {
+        public void doAction(List<Zivotinja> zivotinje, Zivotinja zivotinja, Zivotinja postojeca)
+        {
+            if (postojeca != null)
+                zivotinje.Remove(postojeca);
+            else
+                throw new ArgumentException("Životinja nije registrovana u bazi!");
+        }
+    }
+    class Greska : IDoAction
+    {
+        public void doAction(List<Zivotinja> zivotinje, Zivotinja zivotinja, Zivotinja postojeca)
+        {
+            if(postojeca == null)
+                throw new ArgumentException("Životinja nije registrovana u bazi!");
+            else
+                throw new ArgumentException("Životinja je već registrovana u bazi!");
+
+        }
     }
 }
