@@ -19,7 +19,7 @@ namespace ZivotinjskaFarma
 
         #region Properties
 
-        public List<Zivotinja> Zivotinje { get => zivotinje; }
+        public List<Zivotinja> Zivotinje { get => zivotinje; set => zivotinje = value; }
         public List<Lokacija> Lokacije { get => lokacije; }
         public List<Proizvod> Proizvodi { get => proizvodi; set => proizvodi = value; }
         public List<Kupovina> Kupovine { get => kupovine; }
@@ -91,7 +91,61 @@ namespace ZivotinjskaFarma
             else
                 return;
         }
-       
+
+         // code tuning 1 radio Dautović Hamza
+         public void RadSaZivotinjamaTuning1(string opcija, Zivotinja zivotinja, int maxStarost)
+        {
+            if (zivotinje.Count > 0)
+            {
+                Zivotinja postojeca = null;
+                Zivotinja z2 = null;
+                int max = maxStarost * 365;
+                foreach (Zivotinja z in zivotinje)
+                {
+                    if (z.ID1 == zivotinja.ID1)
+                        z2 = z;
+                    if (z2 != null)
+                    {
+                        if (max > z2.Starost.Year)
+                            postojeca = z2;
+                        break;
+                    }
+                }
+
+                if (opcija == "Dodavanje")
+                    if (postojeca == null)
+                        zivotinje.Add(zivotinja);
+                    else
+                        throw new ArgumentException("Životinja je već registrovana u bazi!");
+
+                else if (opcija == "Izmjena")
+                    if (postojeca != null)
+                    {
+                        var index = zivotinje.IndexOf(postojeca);
+                        zivotinje.RemoveAt(index);
+                        zivotinje.Add(zivotinja);
+                    }
+                    else
+                        throw new ArgumentException("Životinja nije registrovana u bazi!");
+
+                else if (opcija == "Brisanje")
+                    if (postojeca != null)
+                        zivotinje.Remove(postojeca);
+                    else
+                        throw new ArgumentException("Životinja nije registrovana u bazi!");
+
+                else if (postojeca == null)
+                    throw new ArgumentException("Životinja nije registrovana u bazi!");
+
+                else
+                    throw new ArgumentException("Životinja je već registrovana u bazi!");
+
+            }
+
+            else
+                return;
+        }
+
         public void RadSaZivotinjamaRefaktor(IDoAction action, Zivotinja zivotinja, int maxStarost)
         {
             if (zivotinje.Count > 0)
