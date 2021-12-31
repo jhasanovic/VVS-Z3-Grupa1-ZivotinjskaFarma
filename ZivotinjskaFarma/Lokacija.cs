@@ -104,6 +104,34 @@ namespace ZivotinjskaFarma
 
         #region Konstruktor
 
+        //refaktor Hamza
+        /*
+        public Lokacija(List<string> parametri, double površina)
+        {
+            IException exception = new Ipovrsina();
+            exception.throwException(parametri,površina);
+            exception = new Iprazan();
+            exception.throwException(parametri, površina);
+            exception = new Ineispravan();
+            exception.throwException(parametri, površina);
+
+            Površina = površina;
+            Naziv = parametri.ElementAt(0);
+            Adresa = parametri.ElementAt(1);
+
+            int i = 2;
+            if (parametri.Count == 6)
+            {
+                BrojUlice = Int32.Parse(parametri.ElementAt(i));
+                i++;
+            }         
+
+            Grad = parametri.ElementAt(i);
+            i++;
+            PoštanskiBroj = Int32.Parse(parametri.ElementAt(i));
+            i++;
+            Država = parametri.ElementAt(i);
+        }*/
         public Lokacija(List<string> parametri, double površina)
         {
             if (površina < 0.01)
@@ -121,7 +149,7 @@ namespace ZivotinjskaFarma
                 BrojUlice = Int32.Parse(parametri.ElementAt(i));
                 i++;
             }
-            else if(parametri.Count != 5)
+            else if (parametri.Count != 5)
                 throw new ArgumentException("Neispravan broj parametara!");
 
             Grad = parametri.ElementAt(i);
@@ -131,6 +159,42 @@ namespace ZivotinjskaFarma
             Država = parametri.ElementAt(i);
         }
 
+
         #endregion
     }
+    /*
+    public interface IException
+    {
+        void throwException(List<string> parametri,double povrsina);
+    }
+    public class Ipovrsina : IException
+    {
+        public void throwException(List<string> parametri, double povrsina)
+        {
+            if (povrsina < 0.01)
+                throw new ArgumentException("Površina zemljišta mora biti barem 0.01 m2!");          
+
+            return;
+        }
+    }
+    public class Iprazan : IException
+    {
+        public void throwException(List<string> parametri, double povrsina)
+        {
+            if (parametri.Any(p => p.Length < 1))
+                throw new ArgumentException("Nijedan podatak o lokaciji ne smije biti prazan!");
+            
+        }
+
+    }
+    public class Ineispravan : IException
+    {
+        public void throwException(List<string> parametri, double povrsina)
+        {
+            if (parametri.Count != 5 || parametri.Count != 6)
+                throw new ArgumentException("Neispravan broj parametara!");
+
+        }
+    }
+    */
 }

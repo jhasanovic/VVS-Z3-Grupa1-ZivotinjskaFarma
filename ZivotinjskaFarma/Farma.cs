@@ -92,8 +92,8 @@ namespace ZivotinjskaFarma
                 return;
         }
 
-         // code tuning 1 radio Dautović Hamza
-         public void RadSaZivotinjamaTuning1(string opcija, Zivotinja zivotinja, int maxStarost)
+        // code tuning 1 radio Dautović Hamza
+        public void RadSaZivotinjamaTuning1(string opcija, Zivotinja zivotinja, int maxStarost)
         {
             if (zivotinje.Count > 0)
             {
@@ -164,7 +164,7 @@ namespace ZivotinjskaFarma
                 }
 
                 action.doAction(zivotinje, zivotinja, postojeca);
-                    
+
             }
 
             else
@@ -215,6 +215,40 @@ namespace ZivotinjskaFarma
 
                 return true;
             }
+        }
+       
+            
+        public bool KupovinaProizvodaRefaktor(Proizvod p, DateTime rok, int količina)
+        {
+            bool popust = Praznik(DateTime.Now);
+            int id = Kupovina.DajSljedeciBroj();
+            Kupovina kupovina = new Kupovina(id.ToString(), DateTime.Now, rok, p, količina, popust);
+            if (!kupovina.VerificirajKupovinu())
+                return false;
+            return daLiPostojiKupovina(kupovina);         
+                    
+        }
+
+        private bool daLiPostojiKupovina(Kupovina kupovina)
+        {
+
+            for (int i = 0; i < kupovine.Count; i++)
+            {
+                if (provjeriKupovinu(kupovina,i))
+                {
+                    return false;
+
+                }
+            }
+            kupovine.Add(kupovina);
+            return true;
+
+        }
+        private bool provjeriKupovinu(Kupovina kupovina,int i)
+        {
+            return kupovine[i].DatumKupovine == kupovina.DatumKupovine && 
+                   kupovine[i].IDKupca1 == kupovina.IDKupca1 && 
+                   kupovine[i].KupljeniProizvod == kupovina.KupljeniProizvod;
         }
 
         public void BrisanjeKupovine(Kupovina kupovina)
