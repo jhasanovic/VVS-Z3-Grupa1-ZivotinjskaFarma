@@ -162,39 +162,5 @@ namespace ZivotinjskaFarma
 
         #endregion
     }
-    /*
-    public interface IException
-    {
-        void throwException(List<string> parametri,double povrsina);
-    }
-    public class Ipovrsina : IException
-    {
-        public void throwException(List<string> parametri, double povrsina)
-        {
-            if (povrsina < 0.01)
-                throw new ArgumentException("Površina zemljišta mora biti barem 0.01 m2!");          
-
-            return;
-        }
-    }
-    public class Iprazan : IException
-    {
-        public void throwException(List<string> parametri, double povrsina)
-        {
-            if (parametri.Any(p => p.Length < 1))
-                throw new ArgumentException("Nijedan podatak o lokaciji ne smije biti prazan!");
-            
-        }
-
-    }
-    public class Ineispravan : IException
-    {
-        public void throwException(List<string> parametri, double povrsina)
-        {
-            if (parametri.Count != 5 || parametri.Count != 6)
-                throw new ArgumentException("Neispravan broj parametara!");
-
-        }
-    }
-    */
+   
 }
