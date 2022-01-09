@@ -30,7 +30,7 @@ namespace Test
             }
             zivotinje.Add(z);
 
-            for (int i = 0; i < 5000000; i++)
+            for (int i = 0; i < 4999999; i++)
             {
 
                 zivotinje.Add(new Zivotinja(ZivotinjskaVrsta.Krava, System.DateTime.Now.AddDays(-500), 1, 120, l));
@@ -38,15 +38,11 @@ namespace Test
             }
             f.Zivotinje = zivotinje;
 
-            int breakpoint1 = 0;
 
-            for (int i = 0; i < 136; i++)
+            for (int i = 0; i < 63; i++)
             {
                 f.RadSaZivotinjama("Izmjena", z, 10);
             }
-
-            int breakpoint2 = 0;
-
 
 
             f.Zivotinje = null;
@@ -76,7 +72,7 @@ namespace Test
             }
             zivotinje.Add(z);
 
-            for (int i = 0; i < 5000000; i++)
+            for (int i = 0; i < 4999999; i++)
             {
 
                 zivotinje.Add(new Zivotinja(ZivotinjskaVrsta.Krava, System.DateTime.Now.AddDays(-500), 1, 120, l));
@@ -125,13 +121,14 @@ namespace Test
             }
 
             f.Zivotinje = zivotinje;
-
+            
             for (int i = 0; i < 136; i++)
             {
 
                 f.RadSaZivotinjamaTuning2("Izmjena", z, 10);
 
             }
+           
             f.Zivotinje = null;
 
         }
@@ -160,7 +157,7 @@ namespace Test
             }
             zivotinje.Add(z);
 
-            for (int i = 0; i < 5000000; i++)
+            for (int i = 0; i < 4999999; i++)
             {
 
                 zivotinje.Add(new Zivotinja(ZivotinjskaVrsta.Krava, System.DateTime.Now.AddDays(-500), 1, 120, l));
@@ -168,16 +165,13 @@ namespace Test
             }
             f.Zivotinje = zivotinje;
 
-            int breakpoint1 = 0;
 
-            for (int i = 0; i < 136; i++)
+            for (int i = 0; i < 63; i++) //granica petlje smanjena da bi izvršavanje početnog testa bilo oko 30s
             {
 
                 f.RadSaZivotinjamaTuning3("Izmjena", z, 10);
 
             }
-
-            int breakpoint2 = 0;
 
             f.Zivotinje = null;
 

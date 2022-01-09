@@ -228,13 +228,12 @@ namespace ZivotinjskaFarma
             for (int i = 0; i < 365; i++)
                 max += maxStarost;
 
-             for (int i = 0; i < zivotinje.Count; i += 5)
+             for (int i = 0; i < zivotinje.Count; i += 4)
                 {
                     int ID1 = zivotinje[i].ID1;
                     int ID2 = zivotinje[i + 1].ID1;
                     int ID3 = zivotinje[i + 2].ID1;
                     int ID4 = zivotinje[i + 3].ID1;
-                    int ID5 = zivotinje[i + 4].ID1;
 
                     int indeks = -1;
 
@@ -246,8 +245,6 @@ namespace ZivotinjskaFarma
                         indeks = i + 2;
                     else if (zivotinja.ID1 == ID4)
                         indeks = i + 3;
-                    else if (zivotinja.ID1 == ID5)
-                        indeks = i + 4;
 
                     if (indeks != -1)
                         z2 = zivotinje[indeks];
@@ -256,20 +253,9 @@ namespace ZivotinjskaFarma
                     {
                         if (max > z2.Starost.Year)
                             postojeca = z2;
-                        break;
                     }
                 }
 
-                //if (indeks != -1)
-                // z2 = zivotinje[indeks];
-
-                /*if (z2 != null)
-                    {
-                        if (max > z2.Starost.Year)
-                            postojeca = z2;
-                        break;
-                    }
-                }*/
 
                 if (opcija == "Dodavanje")
                     if (postojeca == null)
