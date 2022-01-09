@@ -61,7 +61,7 @@ namespace Test
             Assert.AreEqual(f.Kupovine.Count, 2);
 
         }
-        // petlja izvrsena jednom
+        // petlja izvrsena 2 puta
         [TestMethod]
         public void TestPetlja2()
         {
@@ -76,7 +76,7 @@ namespace Test
 
 
         }
-
+        //petlja izvrsena 8 puta
         [TestMethod]
         public void TestPetlja8()
         {
