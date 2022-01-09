@@ -165,14 +165,14 @@ namespace Test
             }
             f.Zivotinje = zivotinje;
 
-
+           
             for (int i = 0; i < 63; i++) //granica petlje smanjena da bi izvršavanje početnog testa bilo oko 30s
             {
 
                 f.RadSaZivotinjamaTuning3("Izmjena", z, 10);
 
             }
-
+       
             f.Zivotinje = null;
 
         }

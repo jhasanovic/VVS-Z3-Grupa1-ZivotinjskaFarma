@@ -238,16 +238,27 @@ namespace ZivotinjskaFarma
                     int indeks = -1;
 
                     if (zivotinja.ID1 == ID1)
-                        indeks = i;
+                {
+                    indeks = i;
+                    z2 = zivotinje[indeks];
+                }
+                        
                     else if (zivotinja.ID1 == ID2)
-                        indeks = i + 1;
+                {
+                    indeks = i+1;
+                    z2 = zivotinje[indeks];
+                }
                     else if (zivotinja.ID1 == ID3)
-                        indeks = i + 2;
-                    else if (zivotinja.ID1 == ID4)
-                        indeks = i + 3;
-
-                    if (indeks != -1)
+                {
+                        indeks = i+2;
                         z2 = zivotinje[indeks];
+                }
+                        
+                    else if (zivotinja.ID1 == ID4)
+                {
+                    indeks = i + 3;
+                    z2 = zivotinje[indeks];
+                }
 
                     if (z2 != null)
                     {
