@@ -6,7 +6,7 @@ using ZivotinjskaFarma;
 namespace Test
 {
     /// <summary>
-    /// Testovi za potpuni obuhvat uslova
+    /// Testovi za potpuni obuhvat odluka
     /// -Jasmina Hasanović
     /// </summary>
     [TestClass]
