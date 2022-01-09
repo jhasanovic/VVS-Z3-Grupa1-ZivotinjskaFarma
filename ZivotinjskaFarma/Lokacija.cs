@@ -102,34 +102,6 @@ namespace ZivotinjskaFarma
 
         #region Konstruktor
 
-        //refaktor Hamza
-        /*
-        public Lokacija(List<string> parametri, double površina)
-        {
-            IException exception = new Ipovrsina();
-            exception.throwException(parametri,površina);
-            exception = new Iprazan();
-            exception.throwException(parametri, površina);
-            exception = new Ineispravan();
-            exception.throwException(parametri, površina);
-
-            Površina = površina;
-            Naziv = parametri.ElementAt(0);
-            Adresa = parametri.ElementAt(1);
-
-            int i = 2;
-            if (parametri.Count == 6)
-            {
-                BrojUlice = Int32.Parse(parametri.ElementAt(i));
-                i++;
-            }         
-
-            Grad = parametri.ElementAt(i);
-            i++;
-            PoštanskiBroj = Int32.Parse(parametri.ElementAt(i));
-            i++;
-            Država = parametri.ElementAt(i);
-        }*/
         public Lokacija(List<string> parametri, double površina)
         {
             if (površina < 0.01)
@@ -157,6 +129,44 @@ namespace ZivotinjskaFarma
             Država = parametri.ElementAt(i);
         }
 
+        /// <summary>
+        /// Refaktorisana metoda, radila Jasmina Hasanović
+        /// Isto ime metode sa različitim brojem parametara, jer je u pitanju konstruktor
+        /// </summary>
+ 
+        public Lokacija(IDoActionLokacija akcija,List<string> parametri, double površina)
+        {
+            akcija.doActionLokacija(parametri, površina);
+
+            Površina = površina;
+            Naziv = parametri.ElementAt(0);
+            Adresa = parametri.ElementAt(1);
+
+            if (parametri.Count == 6) 
+                BrojUlice = Int32.Parse(parametri.ElementAt(2));
+            else if (parametri.Count != 5) 
+                throw new ArgumentException("Neispravan broj parametara!");
+            
+            Grad = parametri.ElementAt(3);
+            PoštanskiBroj = Int32.Parse(parametri.ElementAt(4));
+            Država = parametri.ElementAt(5);
+        }
+
+
+        public interface IDoActionLokacija
+        {
+            public void doActionLokacija(List<string> parametri, double površina);
+        }
+        class IzuzeciLokacija : IDoActionLokacija
+        {
+            public void doActionLokacija(List<string> parametri, double površina)
+            {
+                if (površina < 0.01)
+                    throw new ArgumentException("Površina zemljišta mora biti barem 0.01 m2!");
+                else if (parametri.Any(p => p.Length < 1))
+                throw new ArgumentException("Nijedan podatak o lokaciji ne smije biti prazan!");
+            }
+        }
 
         #endregion
     }
