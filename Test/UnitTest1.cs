@@ -117,18 +117,19 @@ namespace Test
             }
             zivotinje.Add(z);
 
-            for (int i = 0; i < 5000000; i++)
+            for (int i = 0; i < 4999999; i++)
             {
 
                 zivotinje.Add(new Zivotinja(ZivotinjskaVrsta.Krava, System.DateTime.Now.AddDays(-500), 1, 120, l));
 
             }
+
             f.Zivotinje = zivotinje;
 
             for (int i = 0; i < 136; i++)
             {
 
-                f.RadSaZivotinjamaTuning1("Izmjena", z, 10);
+                f.RadSaZivotinjamaTuning2("Izmjena", z, 10);
 
             }
             f.Zivotinje = null;
