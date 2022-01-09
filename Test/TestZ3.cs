@@ -34,6 +34,7 @@ namespace Test
             p = new Proizvod("", "", "Mlijeko", z, System.DateTime.Now.AddDays(-5), System.DateTime.Now.AddDays(5), 100);
             f = new Farma();
         }
+        // Dautović Hamza
         // testovi za obuhvat petlji
         // s obzirom da je metoda tako napravljena da se for petlja uvijek mora izvršiti ili niti jednom ili maksimalan broj puta,
         // posto se id kupca uvijek mijenja i nikada neće biti isti, petlja je mogla biti izbacena,
