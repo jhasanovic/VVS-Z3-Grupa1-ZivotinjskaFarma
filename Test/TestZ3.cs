@@ -5,10 +5,7 @@ using ZivotinjskaFarma;
 
 namespace Test
 {
-    /// <summary>
-    /// Testovi za potpuni obuhvat odluka
-    /// -Jasmina Hasanović
-    /// </summary>
+ 
     [TestClass]
     public class TestZ3
     {
@@ -97,6 +94,11 @@ namespace Test
 
         }
         /*
+         *    /// <summary>
+    /// Testovi za potpuni obuhvat odluka
+    /// -Jasmina Hasanović
+    /// </summary>
+    
                 /// <summary>
                 /// if #1 true, return false (1-2-10)
                 /// </summary>

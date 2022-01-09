@@ -134,7 +134,7 @@ namespace ZivotinjskaFarma
         /// Isto ime metode sa različitim brojem parametara, jer je u pitanju konstruktor
         /// </summary>
  
-        public Lokacija(IDoActionLokacija akcija,List<string> parametri, double površina)
+        public Lokacija(ILokacijaIzuzetak akcija,List<string> parametri, double površina)
         {
             akcija.doActionLokacija(parametri, površina);
 
@@ -142,22 +142,31 @@ namespace ZivotinjskaFarma
             Naziv = parametri.ElementAt(0);
             Adresa = parametri.ElementAt(1);
 
-            if (parametri.Count == 6) 
-                BrojUlice = Int32.Parse(parametri.ElementAt(2));
-            else if (parametri.Count != 5) 
-                throw new ArgumentException("Neispravan broj parametara!");
-            
-            Grad = parametri.ElementAt(3);
-            PoštanskiBroj = Int32.Parse(parametri.ElementAt(4));
-            Država = parametri.ElementAt(5);
+            int i = 2;
+
+                if (parametri.Count == 6)
+                {
+                    BrojUlice = Int32.Parse(parametri.ElementAt(i));
+                    i++;
+                }
+                akcija.doActionLokacija2(parametri);
+
+                Grad = parametri.ElementAt(i);
+                i++;
+                PoštanskiBroj = Int32.Parse(parametri.ElementAt(i));
+                i++;
+                Država = parametri.ElementAt(i);
+           
+
         }
 
 
-        public interface IDoActionLokacija
+        public interface ILokacijaIzuzetak
         {
             public void doActionLokacija(List<string> parametri, double površina);
+            public void doActionLokacija2(List<string> parametri);
         }
-        class IzuzeciLokacija : IDoActionLokacija
+        class IzuzeciLokacija : ILokacijaIzuzetak
         {
             public void doActionLokacija(List<string> parametri, double površina)
             {
@@ -166,7 +175,15 @@ namespace ZivotinjskaFarma
                 else if (parametri.Any(p => p.Length < 1))
                 throw new ArgumentException("Nijedan podatak o lokaciji ne smije biti prazan!");
             }
+
+            public void doActionLokacija2(List<string> parametri)
+            {
+                if (parametri.Count != 5 && parametri.Count != 6)
+                    throw new ArgumentException("Neispravan broj parametara!");
+
+            }
         }
+
 
         #endregion
     }
