@@ -125,7 +125,7 @@ namespace Test
             for (int i = 0; i < 136; i++)
             {
 
-                f.RadSaZivotinjamaTuning1("Izmjena", z, 10);
+                f.RadSaZivotinjamaTuning2("Izmjena", z, 10);
 
             }
             f.Zivotinje = null;
