@@ -34,6 +34,68 @@ namespace Test
             p = new Proizvod("", "", "Mlijeko", z, System.DateTime.Now.AddDays(-5), System.DateTime.Now.AddDays(5), 100);
             f = new Farma();
         }
+        // Dautović Hamza
+        // testovi za obuhvat petlji
+        // s obzirom da je metoda tako napravljena da se for petlja uvijek mora izvršiti ili niti jednom ili maksimalan broj puta,
+        // posto se id kupca uvijek mijenja i nikada neće biti isti, petlja je mogla biti izbacena,
+        // pisanje testova nije imalo smisla
+
+        // petlja nije izvrsena
+        [TestMethod]
+        public void TestPetlja0()
+        {
+            Assert.AreEqual(f.Kupovine.Count, 0);
+            Assert.IsTrue(f.KupovinaProizvoda(p, System.DateTime.Now.AddDays(3), 40));
+            Assert.AreEqual(f.Kupovine.Count, 1);
+
+        }
+        // petlja izvrsena jednom
+        [TestMethod]
+        public void TestPetlja1()
+        {
+            Assert.AreEqual(f.Kupovine.Count, 0);
+            Proizvod p2 = new Proizvod("", "", "Sir", z, System.DateTime.Now.AddDays(-6), System.DateTime.Now.AddDays(6), 100);
+
+            f.KupovinaProizvoda(p2, System.DateTime.Now.AddDays(3), 40);
+            Assert.IsTrue(f.KupovinaProizvoda(p, System.DateTime.Now.AddDays(3), 40));
+            Assert.AreEqual(f.Kupovine.Count, 2);
+
+        }
+        // petlja izvrsena 2 puta
+        [TestMethod]
+        public void TestPetlja2()
+        {
+            Assert.AreEqual(f.Kupovine.Count, 0);
+            Proizvod p2 = new Proizvod("", "", "Sir", z, System.DateTime.Now.AddDays(-6), System.DateTime.Now.AddDays(6), 100);
+            Proizvod p3 = new Proizvod("", "", "Mlijeko", z, System.DateTime.Now.AddDays(-3), System.DateTime.Now.AddDays(3), 100);
+            f.KupovinaProizvoda(p2, System.DateTime.Now.AddDays(3), 20);
+            f.KupovinaProizvoda(p3, System.DateTime.Now.AddDays(3), 20);
+
+            Assert.IsTrue(f.KupovinaProizvoda(p, System.DateTime.Now.AddDays(3), 20));
+            Assert.AreEqual(f.Kupovine.Count, 3);
+
+
+        }
+        //petlja izvrsena 8 puta
+        [TestMethod]
+        public void TestPetlja8()
+        {
+            Assert.AreEqual(f.Kupovine.Count, 0);
+            Proizvod p2 = new Proizvod("", "", "Sir", z, System.DateTime.Now.AddDays(-6), System.DateTime.Now.AddDays(6), 100);
+            Proizvod p3 = new Proizvod("", "", "Mlijeko", z, System.DateTime.Now.AddDays(-3), System.DateTime.Now.AddDays(3), 100);
+            f.KupovinaProizvoda(p2, System.DateTime.Now.AddDays(3), 20);
+            f.KupovinaProizvoda(p3, System.DateTime.Now.AddDays(3), 20);
+            f.KupovinaProizvoda(p2, System.DateTime.Now.AddDays(3), 10);
+            f.KupovinaProizvoda(p3, System.DateTime.Now.AddDays(3), 10);
+            f.KupovinaProizvoda(p2, System.DateTime.Now.AddDays(3), 20);
+            f.KupovinaProizvoda(p3, System.DateTime.Now.AddDays(3), 20);
+            f.KupovinaProizvoda(p2, System.DateTime.Now.AddDays(3), 10);
+            f.KupovinaProizvoda(p3, System.DateTime.Now.AddDays(3), 10);
+            Assert.IsTrue(f.KupovinaProizvoda(p2, System.DateTime.Now.AddDays(3), 20));
+            Assert.AreEqual(f.Kupovine.Count, 9);
+
+
+        }
         /*
                 /// <summary>
                 /// if #1 true, return false (1-2-10)
@@ -68,6 +130,8 @@ namespace Test
                 }
 
                 */
+
+        /*
         //Testovi za potpuni obuhvat uslova
         //Selma Hadžijusufović
         [TestMethod]
@@ -104,10 +168,6 @@ namespace Test
             Assert.IsTrue(f.KupovinaProizvoda(p, System.DateTime.Now.AddDays(5), 10));
         }
 
-
-
-
-
-
+        */
     }
 }
