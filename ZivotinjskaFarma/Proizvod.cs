@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ZivotinjskaFarma
 {
@@ -21,8 +18,8 @@ namespace ZivotinjskaFarma
 
         public string Ime { get => ime; set => ime = value; }
         public string Opis { get => opis; set => opis = value; }
-        public string Vrsta 
-        { 
+        public string Vrsta
+        {
             get => vrsta;
             set
             {
@@ -33,8 +30,8 @@ namespace ZivotinjskaFarma
                 vrsta = value;
             }
         }
-        public Zivotinja Proizvođač 
-        { 
+        public Zivotinja Proizvođač
+        {
             get => proizvođač;
             set
             {
@@ -52,18 +49,18 @@ namespace ZivotinjskaFarma
                 proizvođač = value;
             }
         }
-        public DateTime DatumProizvodnje 
-        { 
+        public DateTime DatumProizvodnje
+        {
             get => datumProizvodnje;
             set
             {
                 if (value > DateTime.Now)
                     throw new InvalidOperationException("Datum proizvodnje proizvoda ne može biti u budućnosti!");
-                datumProizvodnje = value; 
+                datumProizvodnje = value;
             }
         }
-        public DateTime RokTrajanja 
-        { 
+        public DateTime RokTrajanja
+        {
             get => rokTrajanja;
             set
             {
@@ -73,7 +70,7 @@ namespace ZivotinjskaFarma
             }
         }
         public int KoličinaNaStanju
-        { 
+        {
             get => količinaNaStanju;
             set
             {

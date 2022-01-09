@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ZivotinjskaFarma
 {
@@ -153,7 +151,7 @@ namespace ZivotinjskaFarma
                 Zivotinja postojeca = null;
                 Zivotinja z2 = null;
                 int max = maxStarost * 365;
-                for(int i = 0; i < zivotinje.Count; i+=5)
+                for (int i = 0; i < zivotinje.Count; i += 5)
                 {
                     int ID1 = zivotinje[i].ID1;
                     int ID2 = zivotinje[i + 1].ID1;
@@ -169,13 +167,13 @@ namespace ZivotinjskaFarma
                         indeks = i + 1;
                     else if (zivotinja.ID1 == ID3)
                         indeks = i + 2;
-                    else if(zivotinja.ID1 == ID4)
+                    else if (zivotinja.ID1 == ID4)
                         indeks = i + 3;
                     else if (zivotinja.ID1 == ID5)
                         indeks = i + 4;
 
                     if (indeks != -1)
-                    z2 = zivotinje[indeks];
+                        z2 = zivotinje[indeks];
 
                     if (z2 != null)
                     {
@@ -262,6 +260,7 @@ namespace ZivotinjskaFarma
             bool popust = Praznik(DateTime.Now);
             int id = Kupovina.DajSljedeciBroj();
             Kupovina kupovina = new Kupovina(id.ToString(), DateTime.Now, rok, p, količina, popust);
+
             if (!kupovina.VerificirajKupovinu())
                 return false;
             else
@@ -289,8 +288,8 @@ namespace ZivotinjskaFarma
                 return true;
             }
         }
-       
-            
+
+
         public bool KupovinaProizvodaRefaktor(Proizvod p, DateTime rok, int količina)
         {
             bool popust = Praznik(DateTime.Now);
@@ -298,8 +297,8 @@ namespace ZivotinjskaFarma
             Kupovina kupovina = new Kupovina(id.ToString(), DateTime.Now, rok, p, količina, popust);
             if (!kupovina.VerificirajKupovinu())
                 return false;
-            return daLiPostojiKupovina(kupovina);         
-                    
+            return daLiPostojiKupovina(kupovina);
+
         }
 
         private bool daLiPostojiKupovina(Kupovina kupovina)
@@ -307,7 +306,7 @@ namespace ZivotinjskaFarma
 
             for (int i = 0; i < kupovine.Count; i++)
             {
-                if (provjeriKupovinu(kupovina,i))
+                if (provjeriKupovinu(kupovina, i))
                 {
                     return false;
 
@@ -317,10 +316,10 @@ namespace ZivotinjskaFarma
             return true;
 
         }
-        private bool provjeriKupovinu(Kupovina kupovina,int i)
+        private bool provjeriKupovinu(Kupovina kupovina, int i)
         {
-            return kupovine[i].DatumKupovine == kupovina.DatumKupovine && 
-                   kupovine[i].IDKupca1 == kupovina.IDKupca1 && 
+            return kupovine[i].DatumKupovine == kupovina.DatumKupovine &&
+                   kupovine[i].IDKupca1 == kupovina.IDKupca1 &&
                    kupovine[i].KupljeniProizvod == kupovina.KupljeniProizvod;
         }
 
@@ -359,9 +358,10 @@ namespace ZivotinjskaFarma
 
         #endregion
     }
-    public interface IDoAction {
+    public interface IDoAction
+    {
         public void doAction(List<Zivotinja> zivotinje, Zivotinja zivotinja, Zivotinja postojeca);
-     }
+    }
     class Dodavanje : IDoAction
     {
         public void doAction(List<Zivotinja> zivotinje, Zivotinja zivotinja, Zivotinja postojeca)
@@ -400,7 +400,7 @@ namespace ZivotinjskaFarma
     {
         public void doAction(List<Zivotinja> zivotinje, Zivotinja zivotinja, Zivotinja postojeca)
         {
-            if(postojeca == null)
+            if (postojeca == null)
                 throw new ArgumentException("Životinja nije registrovana u bazi!");
             else
                 throw new ArgumentException("Životinja je već registrovana u bazi!");

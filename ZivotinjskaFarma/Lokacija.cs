@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ZivotinjskaFarma
 {
@@ -18,8 +16,8 @@ namespace ZivotinjskaFarma
 
         #region Properties
 
-        public string Naziv 
-        { 
+        public string Naziv
+        {
             get => naziv;
             set
             {
@@ -29,8 +27,8 @@ namespace ZivotinjskaFarma
             }
         }
 
-        public string Adresa 
-        { 
+        public string Adresa
+        {
             get => adresa;
             set
             {
@@ -41,8 +39,8 @@ namespace ZivotinjskaFarma
             }
         }
 
-        public string Grad 
-        { 
+        public string Grad
+        {
             get => grad;
             set
             {
@@ -55,8 +53,8 @@ namespace ZivotinjskaFarma
                 grad = value;
             }
         }
-        public string Država 
-        { 
+        public string Država
+        {
             get => država;
             set
             {
@@ -66,8 +64,8 @@ namespace ZivotinjskaFarma
                 država = value;
             }
         }
-        public int BrojUlice 
-        { 
+        public int BrojUlice
+        {
             get => brojUlice;
             set
             {
@@ -77,8 +75,8 @@ namespace ZivotinjskaFarma
                 brojUlice = value;
             }
         }
-        public int PoštanskiBroj 
-        { 
+        public int PoštanskiBroj
+        {
             get => poštanskiBroj;
             set
             {
@@ -88,8 +86,8 @@ namespace ZivotinjskaFarma
                 poštanskiBroj = value;
             }
         }
-        public double Površina 
-        { 
+        public double Površina
+        {
             get => površina;
             set
             {
@@ -162,5 +160,5 @@ namespace ZivotinjskaFarma
 
         #endregion
     }
-   
+
 }

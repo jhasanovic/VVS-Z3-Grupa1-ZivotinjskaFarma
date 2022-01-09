@@ -23,7 +23,7 @@ namespace ZivotinjskaFarma
         public ZivotinjskaVrsta Vrsta { get => vrsta; set => vrsta = value; }
         public DateTime Starost
         {
-            get => starost; 
+            get => starost;
             set
             {
                 if (value > DateTime.Now)
@@ -41,9 +41,9 @@ namespace ZivotinjskaFarma
                 tjelesnaMasa = value;
             }
         }
-        public double Visina 
-        { 
-            get => visina; 
+        public double Visina
+        {
+            get => visina;
             set
             {
                 if (value < 1)
